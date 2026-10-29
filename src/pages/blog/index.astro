@@ -9,27 +9,28 @@ import { phoneHref, siteSettings, whatsappHref } from '@/data/site'
 const posts = (await getCollection('posts')).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
 
 const popularTopics = [
-  'Karavan Projesi',
-  'Motosiklet Çanta Ruhsata İşletme',
-  'Motor Değişimi',
-  'Çeki Demiri Projesi',
-  'Koltuk Sökümü & İlave',
-  'TSE 360 Dijital Onay',
-  'LPG Söküm Tadilatı',
-  'TÜVTÜRK Muayenesi',
+  'Kombi Bakımı',
+  'Petek Temizliği',
+  'Kombi Hata Kodları',
+  'Yoğuşmalı Kombi',
+  'Doğalgaz Faturası',
+  'Oda Termostatı',
+  'Kombi Montajı',
+  'Yerden Isıtma',
 ]
 ---
 
 <Layout
-  title="Araç Proje Blogu ve Bilgi Merkezi | Teknik Makaleler"
-  description="Araç tadilatı, TSE uygunluk, ruhsata işletme, motosiklet uygulamaları ve teknik dönüşüm süreçleri için bilgi odaklı, güncel makaleler."
+  title={`Kombi Servisi Bilgi Merkezi | ${siteSettings.brandName}`}
+  description="Kombi bakımı, arıza kodları, petek temizliği, doğalgaz tasarrufu ve ısıtma sistemi kullanımı hakkında pratik ve güncel rehberler."
 >
   <main class="blog-index">
     <InternalHero
-      eyebrow="Teknik Mühendislik Rehberi"
-      title="Araç Proje Blogu ve Bilgi Merkezi"
-      description="Araç tadilatı, TSE uygunluk, ruhsata işletme, motosiklet uygulamaları ve teknik dönüşüm süreçleri için bilgi odaklı, güncel makaleler."
+      eyebrow="Bilgi Merkezi"
+      title="Kombi ve Isıtma Sistemi Rehberi"
+      description="Arıza kodlarından bakım zamanına, petek temizliğinden fatura tasarrufuna kadar evinizi kışa hazırlayan pratik yazılar."
       breadcrumbTitle="Blog"
+      image="/images/hero-engineering.webp"
     />
 
     <section class="shell" style="padding-top:3.5rem">
@@ -49,13 +50,13 @@ const popularTopics = [
       <div class="blog-intro__inner border-t-4 border-primary bg-[#f8f9fa] p-8 shadow-xs">
         <div class="flex items-center gap-2 text-primary text-xs font-black uppercase tracking-wider">
           <FileText size={16} />
-          <span>Mühendislik Rehberleri & Güncel Makaleler</span>
+          <span>Saha Deneyiminden Notlar</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-black uppercase text-slate-950 tracking-tight">
-          TSE Onaylı Araç Tadilatı ve Ruhsata İşletme Rehberleri
+          Kombinizi Kışa Hazırlayan Rehberler
         </h2>
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
-          Yeni Site uzmanlığıyla hazırlanan teknik makaleler; araç tadilatı, TSE uygunluk, ruhsata işletme, motosiklet taşıma kutusu montajı ve teknik dönüşüm süreçlerinde izlenecek yasal adımları, evrak listelerini ve mühendislik gereksinimlerini detaylandırır.
+          {siteSettings.brandName} sahada en sık karşılaştığı arızaları, bakım adımlarını ve tasarruf yöntemlerini yazıyor. Bu yazılar genel bilgilendirme amaçlıdır; kesin teşhis her zaman yerinde inceleme ile konur.
         </p>
       </div>
 
@@ -70,23 +71,23 @@ const popularTopics = [
       <div class="shell dark-band__grid flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="max-w-2xl">
           <h3 class="eyebrow flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary">
-            <ShieldCheck size={18} /> Teknik Mühendislik Danışmanlığı
+            <ShieldCheck size={18} /> Teknik Danışmanlık
           </h3>
           <h2 class="mt-3 text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
-            Aracınız için hangi proje gerektiğini mi merak ediyorsunuz?
+            Kombinizde hangi sorun var, emin değil misiniz?
           </h2>
           <p class="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-            Makaleler genel bilgi sağlar. Araç ruhsatınızı ve uygulama detayınızı paylaşarak sizin için doğru proje kapsamını ve TSE onay sürecini yetkili mühendisimizle hemen netleştirebilirsiniz.
+            Marka, model ve ekranda gördüğünüz hata kodunu yazın; olası nedeni ve yapmanız gerekeni hemen söyleyelim, gerekse aynı gün için servis planlayalım.
           </p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a
             class="button button--primary inline-flex items-center justify-center gap-2 bg-primary px-6 py-3.5 text-xs font-black uppercase tracking-wider text-white hover:bg-white hover:text-slate-950 transition-colors"
-            href={whatsappHref('Merhaba, araç projesi hakkında bilgi ve ön inceleme talep etmek istiyorum.')}
+            href={whatsappHref('Merhaba, kombimle ilgili teknik destek almak istiyorum.')}
             target="_blank"
             rel="noreferrer"
           >
-            WhatsApp'tan Danışın <ArrowRight size={16} />
+            WhatsApp'tan Yazın <ArrowRight size={16} />
           </a>
           <a
             class="button inline-flex items-center justify-center gap-2 border border-white/20 bg-white/10 px-6 py-3.5 text-xs font-black uppercase tracking-wider text-white hover:bg-white hover:text-slate-950 transition-colors"
