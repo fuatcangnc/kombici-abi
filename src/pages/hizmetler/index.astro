@@ -1,3 +1,71 @@
 ---
-return Astro.redirect('/arac-proje-hizmetlerimiz')
+import Layout from '@/layouts/Layout.astro'
+import ServiceCard from '@/components/ServiceCard.astro'
+import InternalHero from '@/components/InternalHero.astro'
+import CtaBanner from '@/components/CtaBanner.astro'
+import { defaultServices, serviceCategories, whatsappHref } from '@/data/site'
+import { ArrowRight, Clock3, FileCheck, ShieldCheck } from '@lucide/astro'
+
+const groups = serviceCategories
+  .map((category) => ({
+    category,
+    anchor: category.toLocaleLowerCase('tr-TR').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+    services: defaultServices.filter((service) => service.category === category).sort((a, b) => a.order - b.order),
+  }))
+  .filter((group) => group.services.length)
+
+const promises = [
+  ['Aynı gün servis', 'Sabah gelen taleplerde çoğu zaman aynı gün kapınızdayız.', Clock3],
+  ['Yazılı net fiyat', 'Onayınız olmadan tek bir parça bile değiştirilmez.', FileCheck],
+  ['Garantili işçilik', 'Yaptığımız işlem 1 yıl firmamız garantisi altındadır.', ShieldCheck],
+]
 ---
+
+<Layout
+  title={`Kombi Servis Hizmetleri | ${siteBrand()}`}
+  description="Kombi bakımı, arıza tespit ve tamir, petek temizliği, kombi montajı, yerden ısıtma servisi ve akıllı ısı kontrolü hizmetleri."
+>
+  <main>
+    <InternalHero
+      eyebrow="Hizmetlerimiz"
+      title="Kombi ve Isıtma Sistemi Servis Hizmetleri"
+      description="Bakımdan arıza onarımına, petek temizliğinden yeni kombi montajına kadar tüm işlemler yazılı teklif, fatura ve garanti belgesiyle tamamlanır."
+      image="/images/hero-engineering.webp"
+    />
+
+    <section class="py-10 md:py-14">
+      <div class="shell">
+        <div class="grid gap-4 sm:grid-cols-3">
+          {promises.map(([title, text, Icon]) => (
+            <article class="border border-neutral-200 bg-neutral-50 p-5">
+              <span class="grid size-11 place-items-center bg-primary text-white"><Icon size={19} /></span>
+              <h3 class="mt-4 text-base font-black uppercase tracking-tight text-neutral-950">{title}</h3>
+              <p class="mt-2 text-sm leading-6 text-neutral-600">{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {groups.map((group) => (
+      <section class="service-list-section border-t border-neutral-200" id={group.anchor}>
+        <div class="shell">
+          <div class="category-block__head">
+            <h2>{group.category}</h2>
+            <span>{group.services.length} hizmet</span>
+          </div>
+          <div class="grid gap-6 pt-8 sm:grid-cols-2 lg:grid-cols-3">
+            {group.services.map((service, index) => <ServiceCard service={service} index={index + 1} />)}
+          </div>
+          <div class="pt-8">
+            <a class="text-link" href={whatsappHref(`${group.category} hizmeti için bilgi almak istiyorum.`)} target="_blank" rel="noreferrer">
+              {group.category} için WhatsApp'tan yazın <ArrowRight size={14} />
+            </a>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <CtaBanner eyebrow="Servis kaydı" title="Hangi hizmete ihtiyacınız olduğunu bilmiyor musunuz?" description="Kombinizin marka ve modelini, yaşadığınız sorunu anlatın; doğru hizmeti birlikte belirleyelim ve aynı gün için randevu planlayalım." />
+  </main>
+</Layout>
