@@ -1,9 +1,83 @@
 ---
-import { Compass, FileCheck, Scale, ShieldCheck } from '@lucide/astro'
+import { ArrowRight, BadgeCheck, Clock3, Flame, HandHeart, Phone, Ruler, ShieldCheck, Thermometer } from '@lucide/astro'
 import Layout from '@/layouts/Layout.astro'
 import InternalHero from '@/components/InternalHero.astro'
 import SiteImage from '@/components/SiteImage.astro'
-import { siteSettings } from '@/data/site'
+import WhyChooseUs from '@/components/WhyChooseUs.astro'
+import { phoneHref, siteSettings, whatsappHref } from '@/data/site'
+
+const principles = [
+  [Ruler, 'Ölçümle konuşuruz', 'Basınç, gaz kaçağı ve baca gazı sıcaklığını cihazla ölçer, arızayı tahminle değil veriyle buluruz.'],
+  [HandHeart, 'Gereksiz parça değiştirmeyiz', 'Onarılabilecek parçayı değiştirip faturayı şişirmeyiz; neyin neden değiştiğini tek tek açıklarız.'],
+  [Clock3, 'Söz verdiğimiz saatte geliriz', 'Randevu aralığını net söyleriz, gecikeceksek arayan siz olmazsınız; biz ararız.'],
+  [ShieldCheck, 'Yaptığımız işin arkasındayız', 'Bakım ve onarımlarımız 1 yıl işçilik garantilidir; aynı şikâyet tekrarlanırsa ücretsiz geliriz.'],
+]
 ---
 
-<Layout title="Hakkımızda | Yeni Site" description="Yeni Site araç proje ve TSE onay süreçlerindeki çalışma yaklaşımı."><main><InternalHero eyebrow="Kurumsal" title="Mühendislik kararlarını güvenli tescil süreçlerine dönüştürüyoruz." description="Yeni Site; araç üzerindeki değişiklikleri teknik doğruluk, mevzuat uyumu ve açık iletişimle projelendirir. Amacımız yalnızca dosya hazırlamak değil, süreci öngörülebilir kılmaktır." /><section class="prose-section"><div class="shell" style="display:grid; gap:3rem; align-items:center"><div style="max-width:42rem"><h3 class="section-kicker">Çalışma yaklaşımımız</h3><h2 class="section-heading">Teknik ayrıntıyı anlaşılır bir yol haritasına çeviririz.</h2><p class="section-lead">Araç tadilatı ve dönüşüm süreçlerinde küçük bir teknik ayrıntı dahi onay ve tescil adımlarını etkileyebilir. Bu nedenle her talebi araç, uygulama ve kullanım amacı özelinde değerlendiririz.</p><p class="section-lead">Müşterilerimizin hangi belgeye, hangi sırayla ve neden ihtiyaç duyduğunu bilmesini önemseriz. Sürecin her aşamasında açık, ölçülebilir ve mevzuata dayalı bilgi sunarız.</p><a class="button button--primary" href="/iletisim" style="margin-top:1.5rem">Projenizi değerlendirelim</a></div><SiteImage src="/images/project-guidance.webp" alt="Araç projesini değerlendiren mühendislik ekibi" style="width:100%; max-height:30rem; object-fit:cover" /></div></section><section class="process-section"><div class="shell"><h3 class="section-kicker">İlkelerimiz</h3><h2 class="section-heading">Her projede aynı dört temel ilke.</h2><div class="service-grid" style="margin-top:2rem">{[[Scale,'Mevzuata uygunluk','Teknik kararları güncel gerekliliklerle uyumlu ele alırız.'],[FileCheck,'Eksiksiz dosya','Başvuru ve kontrol adımları için gerekli teknik bilgileri düzenleriz.'],[Compass,'Açık yol haritası','Süreçteki adımları, sorumlulukları ve olası riskleri baştan açıklarız.'],[ShieldCheck,'Güvenlik odağı','Uygulamanın yalnızca tescilini değil, güvenli kullanımını da gözetiriz.']].map(([Icon,title,text]) => <article class="service-card" style="padding:1.5rem"><Icon size={28} color="var(--primary)" /><h3 style="margin-top:1.5rem">{title}</h3><p style="color:var(--muted);line-height:1.7;font-size:.8rem">{text}</p></article>)}</div></div></section><section class="dark-band"><div class="shell dark-band__grid"><div><h3 class="eyebrow">{siteSettings.brandName}</h3><h2>Aracınız için doğru teknik kararı birlikte verelim.</h2></div><a class="dark-band__link" href="/iletisim">İletişime geçin <span>→</span></a></div></section></main></Layout>
+<Layout title={`Hakkımızda | ${siteSettings.brandName}`} description={`${siteSettings.brandName} kombi servis yaklaşımı: aynı gün servis, ölçüme dayalı arıza tespiti, yazılı net fiyat ve garantili işçilik.`}>
+  <main>
+    <InternalHero
+      eyebrow="Kurumsal"
+      title="Kombi servisini ustalıkla değil sistemle yapıyoruz."
+      description={`${siteSettings.brandName} olarak ${siteSettings.location} ve çevresinde kombi bakımı, arıza onarımı, petek temizliği ve ısıtma sistemi kurulumunda çalışıyoruz. Amacımız arızayı geçici olarak susturmak değil, tekrar etmeyecek şekilde çözmek.`}
+      image="/images/home-process-technical-review.webp"
+    />
+
+    <section class="prose-section">
+      <div class="shell" style="display:grid; gap:3rem; align-items:center">
+        <div style="max-width:42rem">
+          <h3 class="section-kicker">Çalışma anlayışımız</h3>
+          <h2 class="section-heading">Isıtma sistemini tanımak, doğru maliyeti çıkarmaktır.</h2>
+          <p class="section-lead">Kombi arızalarının büyük kısmı yanlış su basıncı, tıkalı tesisat, bakımsız yanma odası veya hatalı baca bağlantısından kaynaklanır. Cihazı yüzeysel kontrol edip parça değiştirmek, kısa sürede aynı şikâyetin geri dönmesine yol açar.</p>
+          <p class="section-lead">Bu yüzden her serviste önce sistemi bütün olarak okuyoruz: kombi, tesisat, radyatörler ve baca. Sonra size üç şeyi net söylüyoruz — sorunun ne olduğu, ne yapmamız gerektiği ve bunun kaç lira olduğu.</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="/iletisim#form">Servis kaydı oluştur <ArrowRight size={16} /></a>
+            <a class="button" style="border:1px solid var(--line)" href={phoneHref}><Phone size={15} /> {siteSettings.phone}</a>
+          </div>
+        </div>
+        <SiteImage src="/images/project-guidance.webp" alt="Kombi tesisatını kontrol eden teknik servis ekibi" style="width:100%; max-height:30rem; object-fit:cover" />
+      </div>
+    </section>
+
+    <section class="process-section" id="surec">
+      <div class="shell">
+        <h3 class="section-kicker">Temel ilkelerimiz</h3>
+        <h2 class="section-heading">Her serviste aynı dört ilke.</h2>
+        <div class="service-grid" style="margin-top:2rem">
+          {principles.map(([Icon, title, text]) => (
+            <article class="service-card" style="padding:1.5rem">
+              <Icon size={28} color="var(--primary)" />
+              <h3 style="margin-top:1.5rem">{title}</h3>
+              <p style="color:var(--muted); line-height:1.7; font-size:.8rem">{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <WhyChooseUs
+      heading="Kombici Abi farkı nerede ortaya çıkar?"
+      lead="Ucuz işçilik değil, ilk ziyarette çözülen arıza ve sonrası rahat edilen bir kış hedefliyoruz."
+      points={[
+        { title: 'TEK NOKTA TAKİBİ', description: 'Servis kaydını açan kişi süreci takip eder; farklı kişilere anlatmak zorunda kalmazsınız.' },
+        { title: 'YAZILI SERVİS FORMU', description: 'Kontrol edilen noktalar, yapılan işlemler ve ölçüm değerleri forma işlenir, size teslim edilir.' },
+        { title: 'TEMİZ SAHA', description: 'Ekipman örtüsü, galoş ve toplu çalışma düzeniyle geliriz; evinizi kirli bırakmayız.' },
+        { title: 'PERİYODİK HATIRLATMA', description: 'Bakım zamanı geldiğinde biz ararız; takvimi siz takip etmezsiniz.' },
+      ]}
+    />
+
+    <section class="dark-band">
+      <div class="shell dark-band__grid">
+        <div>
+          <h3 class="eyebrow"><Flame size={14} /> {siteSettings.brandName}</h3>
+          <h2>Petekler ısımıyor mu, fatura mı yükseldi? Ertelemeyin.</h2>
+          <p>Küçük bir basınç ayarı veya bakım, kış ortasında kalmanızı engeller. Bizi arayın, aynı gün için randevu planlayalım.</p>
+        </div>
+        <div style="display:grid; gap:.7rem">
+          <a class="dark-band__link" href="/iletisim">Servis kaydı oluştur <span>→</span></a>
+          <a class="button button--outline-light" href={whatsappHref('Merhaba, kombi servisi için randevu almak istiyorum.')} target="_blank" rel="noreferrer"><BadgeCheck size={16} /> WhatsApp'tan yazın</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
