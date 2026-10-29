@@ -7,12 +7,12 @@ export const defaultServices = servicesData.services.map((service) => ({
   ...service,
   url: `/${service.slug}`,
 }))
-export const serviceCategories = ['Araç Projeleri', 'Dönüşüm', 'Söküm', 'Motosiklet', 'Belgelendirme', 'LPG Söküm Sistemi Tadilatı', 'Motosiklet Taşıma Kutusu Tadilatı', 'Kamyon & Kamyonet Kasa Projeleri', 'Tescil ve Müşavirlik', 'Firma Belgelendirme Hizmetlerimiz', 'Kamyoneti Otomobile Çevirme', 'Engelli Aparatları Çözümleri'] as const
+export const serviceCategories = ['Kombi Bakımı', 'Arıza & Onarım', 'Isıtma Sistemleri', 'Montaj & Tesisat', 'Akıllı Kontrol'] as const
 export const courierCompanies = couriers
 
 export type Service = (typeof defaultServices)[number]
 export type Courier = (typeof courierCompanies)[number]
 
 export const phoneHref = `tel:${siteSettings.phone.replace(/\D/g, '')}`
-export const whatsappHref = (message = 'Merhaba, aracım için proje ve TSE onay süreci hakkında bilgi almak istiyorum.') =>
+export const whatsappHref = (message = 'Merhaba, kombi servisi hakkında bilgi almak istiyorum.') =>
   `https://wa.me/${siteSettings.whatsapp}?text=${encodeURIComponent(message)}`
