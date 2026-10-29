@@ -14,6 +14,17 @@ import {
 
 const navItems = [
   { label: 'Ana Sayfa', href: '/' },
+  { label: 'Hizmetlerimiz', href: '/hizmetler', variant: 'services' },
+  {
+    label: 'Kurumsal',
+    href: '/hakkimizda',
+    children: [
+      ['Hakkımızda', '/hakkimizda'],
+      ['Nasıl Çalışıyoruz?', '/hakkimizda#surec'],
+      ['Sıkça Sorulan Sorular', '/blog'],
+      ['Blog / Bilgi Merkezi', '/blog'],
+    ],
+  },
   {
     label: 'KVKK',
     href: '/gizlilik-ve-kvkk-politikasi',
@@ -22,30 +33,6 @@ const navItems = [
       ['İlgili Kişi Başvurusu', '/ilgili-kisi-basvurusu'],
       ['Çerez Politikası', '/cerez-politikasi'],
       ['Web Sitesi Ziyaretçi Aydınlatma Metni', '/web-sitesi-ziyaretci-aydinlatma-metni'],
-    ],
-  },
-  {
-    label: 'Kurumsal',
-    href: '/hakkimizda',
-    children: [
-      ['Hakkımızda', '/hakkimizda'],
-      ['Markalarımız', '/markalarimiz'],
-      ['Belgelerimiz', '/belgelerimiz'],
-      ['İş Sağlığı ve Güvenliği Politikası', '/is-sagligi-ve-guvenligi-politikasi'],
-      ['Çevre Politikası', '/cevre-politikasi'],
-      ['Kalite Politikası', '/kalite-politikasi'],
-      ['Bilgi Güvenliği Politikası', '/bilgi-guvenligi-politikasi'],
-      ['Etik İlkelerimiz', '/etik-ilkelerimiz'],
-    ],
-  },
-  { label: 'Hizmetlerimiz', href: '/arac-proje-hizmetlerimiz', variant: 'services' },
-  { label: 'Kurye Firmaları', href: '/kurye-firmalari', variant: 'couriers' },
-  {
-    label: 'Markalar',
-    href: '/motosiklet-markalari',
-    children: [
-      ['Motosiklet Markaları', '/motosiklet-markalari'],
-      ['Araba Markaları', '/araba-markalari'],
     ],
   },
   { label: 'Blog', href: '/blog' },
