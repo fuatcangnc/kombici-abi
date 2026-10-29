@@ -3,7 +3,8 @@
 	"sites": [
 		{
 			"key": "root",
-			"name": "Yeni Site",
+			"name": "kombici abi",
+			"url": "https://app.wuppycms.com/preview/wuppy-fuatcangnc-kombici-abi-jghp2/",
 			"media": "public",
 			"publishing": "review",
 			"collections": ["posts", "pages"]
