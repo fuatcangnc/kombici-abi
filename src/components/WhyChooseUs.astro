@@ -1,58 +1,35 @@
 ---
 import SiteImage from './SiteImage.astro'
 
-const featuresLeft = [
-  {
-    title: 'TSE 360 HIZLI DOSYA ONAYI',
-    description: 'TSE dijital başvuru sistemi üzerinden araç proje dosyanız aynı gün incelenir; randevu ve muayene bekleme süresi en aza iner.',
-  },
-  {
-    title: 'AİTM MEVZUATINA %100 UYUM',
-    description: 'Karavan, motor değişimi, çeki demiri ve koltuk tadilatı projeleri güncel Sanayi ve Teknoloji Bakanlığı AİTM yönetmeliğine tam uygun hazırlanır.',
-  },
-]
+interface Feature { title: string; description: string }
+interface Stat { target: number; suffix?: string; prefix?: string; label: string; description: string }
 
-const featuresRight = [
-  {
-    title: 'MOTOSİKLET ÇANTA TESCİL UZMANLIĞI',
-    description: 'Kurye paket servis kutuları ve bireysel arka çantalar için ceza ve muayene engeli olmadan ruhsata işletme projesi çizilir.',
-  },
-  {
-    title: 'ŞEFFAF MALİYET & DANIŞMANLIK',
-    description: 'Süreç başlamadan önce TSE harçları, muayene ve proje çizim bedelleri net olarak hesaplanır; sürpriz ek masraflarla karşılaşmazsınız.',
-  },
-]
+interface Props {
+  heading?: string
+  lead?: string
+  points?: Feature[]
+  stats?: Stat[]
+}
 
-const stats = [
-  {
-    target: 15,
-    suffix: '+',
-    prefix: '',
-    label: 'YILLIK TECRÜBE',
-    description: 'Araç projelendirme ve tip onay alanında yetkili kadro.',
-  },
-  {
-    target: 5000,
-    suffix: '+',
-    prefix: '',
-    label: 'ONAYLI PROJE',
-    description: 'TSE ve noter tescili tamamlanan güvenli araç ve motosikletler.',
-  },
-  {
-    target: 100,
-    suffix: '%',
-    prefix: '',
-    label: 'MEVZUAT UYUMU',
-    description: 'TÜVTÜRK ve TSE standartlarında eksiksiz teknik dosya.',
-  },
-  {
-    target: 27,
-    suffix: '+',
-    prefix: '',
-    label: 'KURYE & FİLO İŞ ORTAĞI',
-    description: 'Kurye firmaları ve araç filolarına kesintisiz teknik destek.',
-  },
-]
+const {
+  heading = 'Isıtma sisteminizi neden Kombici Abi’ye emanet etmelisiniz?',
+  lead = 'Eğitimli teknik kadromuz, ölçüm cihazlarımız ve şeffaf fiyat anlayışımızla her servisi aynı titizlikle tamamlıyoruz.',
+  points = [
+    { title: 'AYNI GÜN SERVİS AĞI', description: 'Şehir içi mobil ekiplerimiz sayesinde arıza bildiriminin ardından aynı gün kapınızdayız; kışı petek soğuk geçirmek zorunda kalmazsınız.' },
+    { title: 'VERİYLE ARIZA TESPİTİ', description: 'Gaz kaçağı, su basıncı ve yanma ölçümlerini cihazla yapıyoruz. “Parça değiştirip görelim” yaklaşımına son; gereksiz masraf çıkmaz.' },
+    { title: 'YAZILI NET FİYAT', description: 'İşlem başlamadan önce işçilik ve parça bedeli net olarak paylaşılır. İş bittikten sonra sürpriz ek ücret ile karşılaşmazsınız.' },
+    { title: '1 YIL İŞÇİLİK GARANTİSİ', description: 'Yaptığımız bakım ve onarımın arkasında duruyoruz. Aynı arıza tekrarlanırsa ücretsiz tekrar hizmet veriyoruz.' },
+  ],
+  stats = [
+    { target: 12, suffix: '+', label: 'YILLIK SAHA DENEYİMİ', description: 'Kombi ve ısıtma sistemlerinde uzman teknik kadro.' },
+    { target: 8500, suffix: '+', label: 'TAMAMLANAN İŞLEM', description: 'Bakım, onarım ve petek temizliği kaydı.' },
+    { target: 98, suffix: '%', label: 'İLK ZİYARETTE ÇÖZÜM', description: 'Arızaların büyük kısmı ilk ziyarette giderilir.' },
+    { target: 24, suffix: '/7', label: 'WHATSAPP DESTEK', description: 'Randevu ve teknik yönlendirme her an ulaşılabilir.' },
+  ],
+} = Astro.props
+
+const featuresLeft = points.slice(0, 2)
+const featuresRight = points.slice(2, 4)
 ---
 
 <section class="relative bg-white py-20 lg:py-28 overflow-hidden" id="neden-biz">
@@ -65,16 +42,16 @@ const stats = [
         </span>
       </div>
       <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-black leading-tight">
-        Araç Projesi ve Motosiklet Çanta Tescilinde Neden Yeni Site?
+        {heading}
       </h2>
       <p class="mt-4 text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed font-normal">
-        Yetkili makine mühendislerimizle doğru teknik analizden TSE 360 onayına kadar tüm tescil sürecini sıfır hata güvencesiyle yönetiyoruz.
+        {lead}
       </p>
     </div>
 
     <!-- Main 3-Column Interactive Layout -->
     <div class="why-us-grid mt-14 lg:mt-18 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-4">
-      <!-- Left Features (Slide smoothly from Left) -->
+      <!-- Left Features -->
       <div class="lg:col-span-3 flex flex-col gap-8 order-2 lg:order-1">
         {featuresLeft.map((feat) => (
           <div class="why-feat-left relative border-l-4 border-primary pl-5 py-2 group opacity-0 will-change-transform">
@@ -88,31 +65,21 @@ const stats = [
         ))}
       </div>
 
-      <!-- Center Visual: Enlarged Car Chassis + Spinning Volang Engine Pulley -->
+      <!-- Center Visual -->
       <div class="why-car-center lg:col-span-6 flex items-center justify-center order-1 lg:order-2 opacity-0 will-change-transform">
-        <div class="relative w-full max-w-[720px] aspect-[1024/462] flex items-center justify-center">
+        <div class="relative w-full max-w-[620px] aspect-square flex items-center justify-center">
           <SiteImage
-            src="/car-banner-1024x462.webp"
-            alt="Yeni Site Araç Projelendirme"
-            class="w-full h-full object-contain pointer-events-none select-none drop-shadow-xl"
+            src="/images/hero-engineering.webp"
+            alt="Kombi bakımında ölçüm yapan teknik servis"
+            class="w-full h-full object-cover pointer-events-none select-none drop-shadow-xl"
+            widths={[420, 620, 820]}
+            sizes="(max-width: 1024px) 90vw, 620px"
             loading="lazy"
-            width="1024"
-            height="462"
           />
-          <!-- 360 Degree Spinning Volang (Engine Pulley) -->
-          <div class="absolute left-[50%] top-[59.5%] -translate-x-1/2 -translate-y-1/2 w-[5.4%] aspect-square flex items-center justify-center pointer-events-none">
-            <SiteImage
-              src="/volang.webp"
-              alt="Dönen Motor Parçası"
-              class="w-full h-full object-contain animate-spin drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] [animation-duration:3s]"
-              width="45"
-              height="45"
-            />
-          </div>
         </div>
       </div>
 
-      <!-- Right Features (Slide smoothly from Right) -->
+      <!-- Right Features -->
       <div class="lg:col-span-3 flex flex-col gap-8 order-3">
         {featuresRight.map((feat) => (
           <div class="why-feat-right relative border-l-4 lg:border-l-0 lg:border-r-4 border-primary pl-5 lg:pl-0 lg:pr-5 py-2 lg:text-right group opacity-0 will-change-transform">
@@ -127,7 +94,7 @@ const stats = [
       </div>
     </div>
 
-    <!-- Bottom Stats Counters with motion.dev CountUp -->
+    <!-- Bottom Stats Counters -->
     <div class="why-us-stats mt-16 lg:mt-24 pt-12 border-t border-neutral-200 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
       {stats.map((stat) => (
         <div class="flex flex-col items-center text-center group">
