@@ -84,17 +84,14 @@ const isActive = (href: string) => Astro.url.pathname === href || (href !== '/' 
                   <NavigationMenuTrigger class={hubHrefs.some((h) => isActive(h)) ? '!border-primary !text-primary !font-black' : ''}>
                     <span>{item.label}</span>
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent align="center" class="w-80 bg-white shadow-2xl border border-neutral-200">
-                    <div class="grid gap-1 p-2">
-                      <span class="px-3 pb-1 pt-2 text-xs font-black uppercase tracking-[.18em] text-primary">Hizmetlerimiz</span>
-                      {serviceHubs.map((hub) => (
-                        <div class="group/sub relative">
-                          <NavigationMenuLink href={hub.href} class="flex items-center justify-between rounded-sm px-3 py-2.5 text-sm font-black text-black transition-colors hover:bg-primary hover:!text-white">
-                            <span class="flex items-center gap-2">{hub.label} <ChevronRight size={15} /></span>
-                          </NavigationMenuLink>
-                          <div class="js-flyout invisible absolute left-full top-[-1rem] z-10 w-72 max-h-[400px] overflow-y-auto bg-white opacity-0 shadow-2xl border border-neutral-200 transition-opacity duration-200 group-hover/sub:visible group-hover/sub:opacity-100 group-focus-within/sub:visible group-focus-within/sub:opacity-100 p-2">
-                            {hub.categories.flatMap((category) => defaultServices.filter((service) => service.category === category).sort((a, b) => a.order - b.order)).map((service) => (
-                              <NavigationMenuLink href={`/${service.slug}`} class="block rounded-sm px-3 py-1.5 text-sm font-semibold text-neutral-900 hover:bg-primary hover:!text-white transition-colors">{service.shortTitle}</NavigationMenuLink>
+                                    <NavigationMenuContent align="center" class="w-[min(44rem,calc(100vw-2rem))] bg-white shadow-2xl border border-neutral-200">
+                    <div class="grid gap-6 p-5 sm:grid-cols-2">
+                      {serviceGroups.filter((group) => group.services.length).map((group) => (
+                        <div>
+                          <span class="block border-b border-neutral-200 pb-1.5 text-[11px] font-black uppercase tracking-[.16em] text-primary">{group.category}</span>
+                          <div class="mt-1.5 grid">
+                            {group.services.map((service) => (
+                              <NavigationMenuLink href={`/${service.slug}`} class="block rounded-sm px-2 py-2 text-[13px] font-semibold text-neutral-900 hover:bg-primary hover:!text-white transition-colors">{service.shortTitle}</NavigationMenuLink>
                             ))}
                           </div>
                         </div>
