@@ -25,31 +25,23 @@ const serviceImages = [
 ] as const
 
 const serviceBenefitsBySlug: Record<string, readonly [string, string, string]> = {
-  'lpg-sokum-projesi': ['LPG donanım kontrolü', 'Söküm uygunluk projesi', 'Ruhsat güncelleme desteği'],
-  'engelli-aparati-montaj-projesi': ['Aparat montaj projesi', 'TSE kontrol yönlendirmesi', 'Ruhsat işlem desteği'],
-  'arac-motor-degisim-projesi': ['Motor uygunluk incelemesi', 'Teknik proje dosyası', 'Ruhsata işletme desteği'],
-  'okul-servisi-sokum-projesi': ['Servis donanımı sökümü', 'Araç sınıfı güncellemesi', 'Ruhsat işlemleri'],
-  'motosiklet-canta-ruhsata-isletme': ['Taşıma ekipmanı ölçümü', 'Montaj uygunluk projesi', 'Tescil yönlendirmesi'],
-  'karavan-projesi': ['Yerleşim ve ağırlık hesabı', 'Dönüşüm proje dosyası', 'TSE onay yönlendirmesi'],
-  'koltuk-sokum-projesi': ['Koltuk kapasite hesabı', 'Söküm ve montaj projesi', 'Ruhsat güncelleme desteği'],
-  'surucu-kursu-araci-projesi': ['Çift kumanda incelemesi', 'Dönüşüm veya iptal projesi', 'TSE ve tescil süreci'],
-  'ceki-demiri-projesi': ['Montaj uygunluk projesi', 'TSE kontrol süreci', 'Ruhsata işletme desteği'],
-  'karayolu-uygunluk-belgesi': ['Teknik kriter incelemesi', 'Uygunluk belge dosyası', 'Başvuru yönlendirmesi'],
-  'hasta-nakil-araci-donusum-projesi': ['Donanım yerleşim projesi', 'Hasta nakil uygunluğu', 'Onay ve tescil desteği'],
-  'motosiklet-sase-degisim-projesi': ['Şase kimlik doğrulaması', 'Teknik ölçüm projesi', 'Tescil işlem desteği'],
-  'hidrolik-kapak-lift-projesi': ['Taşıma kapasite hesabı', 'Montaj ölçü projesi', 'Ruhsata işletme desteği'],
-  'hidrolik-ayak-projesi': ['Denge ayağı uygunluk projesi', 'Montaj teknik incelemesi', 'TSE onay desteği'],
-  'pickup-camli-kabin-projesi': ['Kabin ölçülendirme projesi', 'Araç üstü uygulama kontrolü', 'Tescil yönlendirmesi'],
-  'sari-tepe-lambali-eskort-araci-projesi': ['Tepe lambası uygunluk projesi', 'Kullanım amacı değerlendirmesi', 'Ruhsat işlem desteği'],
-  'lpg-sistemi-sokum-tadilati': ['LPG sistem söküm işlemi', 'Güvenlik kontrolü', 'Tescil güncelleme desteği'],
+  'kombi-bakimi': ['21 nokta kontrol listesi', 'Yanma ve gaz ayarı', 'Verim raporu'],
+  'kombi-ariza-tespit-ve-tamir': ['Cihazla arıza tespiti', 'Aynı gün müdahale', '1 yıl işçilik garantisi'],
+  'petek-temizligi': ['Makine destekli temizlik', 'Çamur ve kireç giderme', 'Isı verimi testi'],
+  'kombi-montaji-ve-yeri-degisimi': ['Baca ve menfez kontrolü', 'Güvenli gaz bağlantısı', 'Test ve devreye alma'],
+  'kombi-anakart-tamiri': ['Elektronik onarım', 'Orijinal parça seçeneği', 'Testli teslim'],
+  'brulor-ve-esanjor-degisimi': ['Orijinal yedek parça', 'Yanma ayarı yeniden', 'Faturalı işlem'],
+  'yerden-isitma-servisi': ['Kolektör temizliği', 'Kaçak kontrolü', 'Oda dengesi ayarı'],
+  'dogalgaz-ic-tesisat': ['İç tesisat uygulaması', 'Gaz açma desteği', 'Onay süreci takibi'],
+  'termostat-ve-akilli-oda-kontrolu': ['Uzaktan kontrol', 'Programlı ısıtma', 'Faturada tasarruf'],
 }
 
 function getServiceBenefits(service: Service): readonly string[] {
   return (
     serviceBenefitsBySlug[service.slug] ?? [
-      `${service.shortTitle} teknik değerlendirmesi`,
-      'TSE uygunluk dosyası',
-      'Ruhsata işletme desteği',
+      `${service.shortTitle} yerinde incelemesi`,
+      'Yazılı net fiyat teklifi',
+      'Garanti belgeli işlem',
     ]
   )
 }
