@@ -39,10 +39,10 @@ const navItems = [
   { label: 'İletişim', href: '/iletisim' },
 ]
 
-const featuredCourierNames = ['Getir', 'Yemek Sepeti', 'Trendyol', 'Trendyol Go', 'Tıkla Gelsin', 'Vigo', 'Uber Eats', 'Migros Kurye', "Domino's", 'Paket Taxi', 'Jetbee', 'Moto Kurye']
+const featuredCourierNames: string[] = []
 const headerCouriers = featuredCourierNames.map((name) => {
   const found = courierCompanies.find((c) => c.name.toLowerCase() === name.toLowerCase())
-  return found || { name, slug: 'kurye-firmalari' }
+  return found || { name, slug: '/hizmetler' }
 })
 
 const serviceGroups = serviceCategories.map((category) => ({
@@ -50,15 +50,11 @@ const serviceGroups = serviceCategories.map((category) => ({
   services: defaultServices.filter((service) => service.category === category).sort((a, b) => a.order - b.order),
 }))
 
-const serviceHubs = [
-  { label: 'Araç Proje Hizmetleri', href: '/arac-proje-hizmetlerimiz', categories: ['Araç Projeleri', 'Dönüşüm', 'Söküm', 'Motosiklet', 'Belgelendirme'] },
-  { label: 'Araç Tadilat Çözümleri', href: '/arac-tadilat-cozumleri', categories: ['LPG Söküm Sistemi Tadilatı', 'Motosiklet Taşıma Kutusu Tadilatı'] },
-  { label: 'Engelli Aparatları Çözümleri', href: '/engelli-aparatlari-cozumleri', categories: ['Engelli Aparatları Çözümleri'] },
-  { label: 'Firma Belgelendirme Hizmetlerimiz', href: '/firma-belgelendirme-hizmetlerimiz', categories: ['Firma Belgelendirme Hizmetlerimiz'] },
-  { label: 'Kamyon & Kamyonet Kasa Projeleri', href: '/kamyon-kamyonet-kasa-projeleri', categories: ['Kamyon & Kamyonet Kasa Projeleri'] },
-  { label: 'Kamyoneti Otomobile Çevirme', href: '/kamyoneti-otomobile-cevirme', categories: ['Kamyoneti Otomobile Çevirme'] },
-  { label: 'Tescil ve Müşavirlik', href: '/tescil-ve-musavirlik', categories: ['Tescil ve Müşavirlik'] },
-]
+const serviceHubs = serviceCategories.map((category) => ({
+  label: category,
+  href: `/hizmetler#${category.toLocaleLowerCase('tr-TR').replace(/[^a-z0-9]+/g, '-')}`,
+  categories: [category],
+}))
 const hubHrefs = serviceHubs.map((h) => h.href)
 
 const isActive = (href: string) => Astro.url.pathname === href || (href !== '/' && Astro.url.pathname.startsWith(`${href}/`))
